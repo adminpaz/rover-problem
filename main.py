@@ -6,6 +6,7 @@ class ForbiddenCommand(Exception):
     """Exception when a not available command is received"""
     pass
 
+
 class ISimulation():
 
     def run(self, cmd_lines: list) -> list:
@@ -53,6 +54,7 @@ class SquaredSequentialSurfaceSimulation(ISimulation):
 
 
 if __name__ == "__main__":
-    sample_input = ["5 5", "1 2 N", "L M L M L M L M M", "3 3 E", "M M R M M R M R R M"]
+    sample_input = ["5 5", "1 2 N", "L M L M L M L M M",
+                    "3 3 E", "M M R M M R M R R M"]
     result = SquaredSequentialSurfaceSimulation().run(sample_input)
     print(result)

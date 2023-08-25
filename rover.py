@@ -6,10 +6,10 @@ class NotAllowedDirection(Exception):
     pass
 
 
-class Rover(): # Observable
+class Rover():  # Observable
 
     DIRECTIONS_STR = ["N", "E", "S", "W"]
-    VECTOR_DIR = [(0 , 1), (1 , 0), (0 ,-1), (-1, 0)]
+    VECTOR_DIR = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
     def __init__(self):
         pass
@@ -17,7 +17,7 @@ class Rover(): # Observable
     def land(self, x_ini: int, y_ini: int, direction: str, plateau: IPlateau):
         # Attach function
         self._direction = self._str_to_dir(direction)
-        self._x = x_ini 
+        self._x = x_ini
         self._y = y_ini
         self._plateau = plateau
         self._plateau.take_place(self._x, self._y)
@@ -26,7 +26,7 @@ class Rover(): # Observable
         for idx, available_dir in enumerate(self.DIRECTIONS_STR):
             if direction_str == available_dir:
                 return idx
-            
+
         raise NotAllowedDirection()
 
     def turn_right(self) -> None:
@@ -43,5 +43,5 @@ class Rover(): # Observable
         self._y += dy
 
     def __str__(self):
-        return f"{self._x} {self._y} {self.DIRECTIONS_STR[self._direction % 4]}"
- 
+        direction = self.DIRECTIONS_STR[self._direction % 4]
+        return f"{self._x} {self._y} {direction}"

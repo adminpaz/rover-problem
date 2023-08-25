@@ -16,7 +16,7 @@ class CollisionError(Exception):
 class IPlateau():
 
     def __init__(self):
-        pass 
+        pass
 
     def take_place(self):
         pass
@@ -25,13 +25,14 @@ class IPlateau():
         pass
 
 
-class SquaredPlateau(IPlateau): # Observer
+class SquaredPlateau(IPlateau):  # Observer
 
     def __init__(self, x_max: int, y_max: int):
         self.x_max = x_max
         self.y_max = y_max
         # Initialize all positions
-        self.positions = np.zeros((self.x_max + 1, self.y_max + 1), dtype='bool')
+        self.positions = np.zeros((self.x_max + 1, self.y_max + 1),
+                                  dtype='bool')
 
     def take_place(self, x, y) -> None:
         try:
@@ -44,4 +45,3 @@ class SquaredPlateau(IPlateau): # Observer
 
     def release_place(self, x, y) -> None:
         self.positions[x, y] = 0
-
