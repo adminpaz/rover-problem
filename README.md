@@ -23,3 +23,10 @@ M M R M M R M R R M
 ### Expected Output:
 1 3 N \
 5 1 E
+
+# Asumptions
+
+1. Commands are separated by spaces.
+1. Rovers are surface vehicles, so they cannot pass through a position where another rover is already placed.
+1. The trajectory of the rover is only allowed to be within the Plateau. If a rover is moving outside the limits, it will be considered that the device was lost and will not be taken into account in the problem anymore.
+1. The positions are expressed as integer numbers, and the intermediate positions between these steps are not allowed.
