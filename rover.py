@@ -1,9 +1,30 @@
-from plateau import IPlateau
+from abc import ABCMeta
+from abc import abstractmethod
 
 
 class NotAllowedDirection(Exception):
     """Exception when the direction command is not in the available ones"""
     pass
+
+
+class IPlateau(metaclass=ABCMeta):
+
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (
+            hasattr(subclass, 'take_place') and
+            callable(subclass.take_place) and
+            hasattr(subclass, 'release_place') and
+            callable(subclass.release_place)
+        )
+
+    @abstractmethod
+    def take_place(self, x, y):
+        raise NotImplementedError
+
+    @abstractmethod
+    def release_place(self, x, y):
+        raise NotImplementedError
 
 
 class Rover():  # Observable

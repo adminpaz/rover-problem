@@ -1,5 +1,6 @@
 
 import numpy as np
+from rover import IPlateau
 
 
 class OutOfPlateauError(Exception):
@@ -13,20 +14,11 @@ class CollisionError(Exception):
     pass
 
 
-class IPlateau():
-
-    def __init__(self):
-        pass
-
-    def take_place(self):
-        pass
-
-    def release_place(self):
-        pass
-
-
 class SquaredPlateau(IPlateau):  # Observer
-
+    """
+    Implementation of Plateau with squared shape that implements the interface
+    IPlateau. This ensures that can be the observer of rovers objects
+    """
     def __init__(self, x_max: int, y_max: int):
         self.x_max = x_max
         self.y_max = y_max
@@ -36,10 +28,13 @@ class SquaredPlateau(IPlateau):  # Observer
 
     def take_place(self, x, y) -> None:
         try:
-            if not self.positions[x, y]:
-                self.positions[x, y] = True
+            if x >= 0 and y >= 0:
+                if not self.positions[x, y]:
+                    self.positions[x, y] = True
+                else:
+                    raise CollisionError()
             else:
-                raise CollisionError()
+                raise OutOfPlateauError()
         except IndexError:
             raise OutOfPlateauError()
 
